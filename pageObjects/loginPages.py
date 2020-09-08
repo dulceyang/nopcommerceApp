@@ -1,4 +1,3 @@
-from selenium import webdriver
 
 class login():
     testbox_username_id = 'Email'
@@ -22,3 +21,4 @@ class login():
 
     def clickLogout(self):
         self.driver.find_element_by_xpath(self.button_logout_xpath).click()
+
