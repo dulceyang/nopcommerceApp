@@ -4,10 +4,11 @@ import pytest
 @pytest.fixture()
 def setup(browser):
     if browser == 'chrome':
-        driver = webdriver.Chrome("/Users/daominyang/Documents/chromedriver 2")
+        driver = webdriver.Chrome("/Users/daominyang/Documents/chromedriver 3")
     elif browser == 'firefox':
         driver = webdriver.Firefox()
     else:
+        # This is default browser
         driver = webdriver.Ie()
     return driver
 
@@ -41,7 +42,7 @@ def pytest_configure(config):
     """
     config._metadata['Project Name'] = 'nop Commerce'
     config._metadata['Module Name'] = 'Customers'
-    config._metadata['Tester'] = 'Pavan'
+    config._metadata['Tester'] = 'Tester'
 
 
 @pytest.mark.optionslhook

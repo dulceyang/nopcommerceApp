@@ -1,7 +1,5 @@
-import pytest
-from selenium import webdriver
-from pageObjects.loginPages import login
 from utilities.readProperties import ReadConfig
+from pageObjects.loginPages import login
 from utilities.customLogger import logGen
 """
 How to run test:
@@ -22,12 +20,12 @@ class Test_001_login:
         if act_title == "Your store. Login":
             assert True
             self.logger.info("**** homepageTitle passed ****")
+            self.driver.close()
         else:
-            self.driver.save_screenshot("./Screenshots/test_homepageTitle")
+            self.driver.save_screenshot("./nopcommerceApp/Screenshots/" + "test_homepageTitle.png")
             self.logger.error("**** homepageTitle failed ****")
+            self.driver.close()
             assert False
-        self.driver.close()
-
 
     def test_login(self, setup):
         self.logger.info("**** Test_002_login ****")
@@ -39,10 +37,14 @@ class Test_001_login:
         self.lp.setPassword(self.password)
         self.lp.clickLogin()
         act_title = self.driver.title
-        if act_title == "Dashboard / nopCommerce administration":
+        if act_title == "Dashboard / nopCommerce administration123":
             assert True
             self.logger.info("**** Login test passed ****")
+            self.driver.close()
         else:
-            assert False
+            self.driver.save_screenshot(
+                "./nopcommerceApp/Screenshots/test_login.png")
+            self.logger.error("**** homepageTitle failed ****")
             self.logger.error("**** Login test failed ****")
-        self.driver.close()
+            self.driver.close()
+            assert False

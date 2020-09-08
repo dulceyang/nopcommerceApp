@@ -1,8 +1,8 @@
 import configparser
 
 config = configparser.RawConfigParser()
-config.read("./Configurations/config.ini")
-
+#config.read("/Users/daominyang/PycharmProjects/nopcommerceApp/Configurations/config.ini")
+config.read("./nopcommerceApp/Configurations/config.ini")
 class ReadConfig():
     @staticmethod
     def getApplicationURL():
@@ -10,7 +10,7 @@ class ReadConfig():
         return url
 
     @staticmethod
-    def getUsername():
+    def getUseremail():
         username = config.get('common info', 'username')
         return username
 

@@ -8,18 +8,18 @@ class AddCustomer:
     btnAddnew_xpath = "//a[@class='btn bg-blue']"
     txtEmail_xpath = "//input[@id='Email']"
     txtPassword_xpath = "//input[@id='Password']"
+    txtFirstName_xpath = "//input[@id='FirstName']"
+    txtLastName_xpath = "//input[@id='LastName']"
+    rdMaleGender_id = "Gender_Male"
+    rdFeMaleGender_id = "Gender_Female"
+    txtDob_xpath = "//input[@id='DateOfBirth']"
+    txtCompanyName_xpath = "//input[@id='Company']"
     txtcustomerRoles_xpath = "//div[@class='k-multiselect-wrap k-floatwrap']"
     lstitemAdministrators_xpath = "//li[contains(text(),'Administrators')]"
     lstitemRegistered_xpath = "//li[contains(text(),'Registered')]"
     lstitemGuests_xpath = "//li[contains(text(),'Guests')]"
     lstitemVendors_xpath = "//li[contains(text(),'Vendors')]"
     drpmgrOfVendor_xpath = "//*[@id='VendorId']"
-    rdMaleGender_id = "Gender_Male"
-    rdFeMaleGender_id = "Gender_Female"
-    txtFirstName_xpath = "//input[@id='FirstName']"
-    txtLastName_xpath = "//input[@id='LastName']"
-    txtDob_xpath = "//input[@id='DateOfBirth']"
-    txtCompanyName_xpath = "//input[@id='Company']"
     txtAdminContent_xpath = "//textarea[@id='AdminComment']"
     btnSave_xpath = "//button[@name='save']"
 
@@ -44,7 +44,7 @@ class AddCustomer:
 
     def setCustomerRoles(self,role):
         self.driver.find_element_by_xpath(self.txtcustomerRoles_xpath).click()
-        time.sleep(3)
+        time.sleep(5)
         if role == 'Registered':
             self.listitem = self.driver.find_element_by_xpath(self.lstitemRegistered_xpath)
         elif role=='Administrators':
@@ -53,9 +53,10 @@ class AddCustomer:
             # Here user can be Registered( or) Guest, only one
             time.sleep(3)
             self.driver.find_element_by_xpath("//*[@id='SelectedCustomerRoleIds_taglist']/li/span[2]").click()
+            # time.sleep(1)
             self.listitem = self.driver.find_element_by_xpath(self.lstitemGuests_xpath)
-        elif role=='Registered':
-            self.listitem = self.driver.find_element_by_xpath(self.lstitemRegistered_xpath)
+        # elif role=='Registered':
+        #     self.listitem = self.driver.find_element_by_xpath(self.lstitemRegistered_xpath)
         elif role=='Vendors':
             self.listitem = self.driver.find_element_by_xpath(self.lstitemVendors_xpath)
         else:

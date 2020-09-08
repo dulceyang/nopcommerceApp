@@ -1,5 +1,3 @@
-import pytest
-from selenium import webdriver
 from pageObjects.loginPages import login
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import logGen
@@ -11,7 +9,7 @@ pytest -v -s testCases/test_login.py --browser chrome (or firefox)
 """
 class Test_002_DDT_login:
     baseURL = ReadConfig.getApplicationURL()
-    path = ".//TestData/testdata.xlsx"
+    path = "./nopcommerceApp/TestData/testdata.xlsx"
 
     logger = logGen.loggen()
 
@@ -28,12 +26,13 @@ class Test_002_DDT_login:
         for r in range(2,self.rows+1):
             self.username = XLUtils.readData(self.path,'Sheet1', r, 1)
             self.password = XLUtils.readData(self.path,'Sheet1', r, 2)
+
             self.exp = XLUtils.readData(self.path,'Sheet1', r, 3)
 
             self.lp.setUserName(self.username)
             self.lp.setPassword(self.password)
             self.lp.clickLogin()
-            time.sleep(5)
+            time.sleep(2)
 
             act_title = self.driver.title
             exp_title = "Dashboard / nopCommerce administration"
