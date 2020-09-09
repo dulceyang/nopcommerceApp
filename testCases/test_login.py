@@ -1,3 +1,4 @@
+import pytest
 from utilities.readProperties import ReadConfig
 from pageObjects.loginPages import login
 from utilities.customLogger import logGen
@@ -7,10 +8,11 @@ pytest -v -s testCases/test_login.py --browser chrome (or firefox)
 """
 class Test_001_login:
     baseURL = ReadConfig.getApplicationURL()
-    username = ReadConfig.getUsername()
+    username = ReadConfig.getUseremail()
     password = ReadConfig.getPassword()
     logger = logGen.loggen()
 
+    @pytest.mark.sanity
     def test_homepageTitle(self, setup):
         self.logger.info("**** Test_001_login ****")
         self.logger.info("**** Verifying Home title page ****")
@@ -27,6 +29,8 @@ class Test_001_login:
             self.driver.close()
             assert False
 
+    @pytest.mark.sanity
+    @pytest.mark.regression
     def test_login(self, setup):
         self.logger.info("**** Test_002_login ****")
         self.logger.info("**** Verifying Login test ****")

@@ -1,3 +1,4 @@
+import pytest
 from pageObjects.loginPages import login
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import logGen
@@ -13,6 +14,7 @@ class Test_002_DDT_login:
 
     logger = logGen.loggen()
 
+    @pytest.mark.regression
     def test_login_ddt(self, setup):
         self.logger.info("**** Test_002_DDT_login ****")
         self.logger.info("**** Verifying Login DDT test ****")
